@@ -2,10 +2,8 @@ const express = require('express');
 const path = require('path');
 
 // Add ApolloServer
-
 const { ApolloServer } = require('apollo-server-express');
 const db = require('./config/connection');
-//const routes = require('./routes');
 
 // Add typeDefs & resolvers
 const { typeDefs, resolvers } = require('./schemas');
@@ -30,8 +28,6 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
-
-// app.use(routes);
 
 db.once('open', () => {
   app.listen(PORT, () => {
